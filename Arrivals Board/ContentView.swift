@@ -10,7 +10,12 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            ForEach(ArrivalsBoardViewModel.testData) { arrivalBoard in
+                ArrivalsBoardView(model: arrivalBoard)
+                .padding()
+            }
+        }
     }
 }
 

@@ -14,6 +14,8 @@
 		F43EF6AA2474A0FA00FB8234 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F43EF6A92474A0FA00FB8234 /* Preview Assets.xcassets */; };
 		F43EF6AD2474A0FA00FB8234 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F43EF6AB2474A0FA00FB8234 /* LaunchScreen.storyboard */; };
 		F43EF6B82474A0FA00FB8234 /* Arrivals_BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43EF6B72474A0FA00FB8234 /* Arrivals_BoardTests.swift */; };
+		F43EF6C52474A13700FB8234 /* ArrivalsBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43EF6C42474A13700FB8234 /* ArrivalsBoardViewModel.swift */; };
+		F43EF6C72474A13F00FB8234 /* ArrivalsBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43EF6C62474A13F00FB8234 /* ArrivalsBoardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		F43EF6B32474A0FA00FB8234 /* Arrivals BoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Arrivals BoardTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F43EF6B72474A0FA00FB8234 /* Arrivals_BoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrivals_BoardTests.swift; sourceTree = "<group>"; };
 		F43EF6B92474A0FA00FB8234 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F43EF6C42474A13700FB8234 /* ArrivalsBoardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrivalsBoardViewModel.swift; sourceTree = "<group>"; };
+		F43EF6C62474A13F00FB8234 /* ArrivalsBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrivalsBoardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,8 @@
 		F43EF69F2474A0F900FB8234 /* Arrivals Board */ = {
 			isa = PBXGroup;
 			children = (
+				F43EF6C32474A11100FB8234 /* View Models */,
+				F43EF6C22474A10500FB8234 /* Views */,
 				F43EF6A02474A0F900FB8234 /* AppDelegate.swift */,
 				F43EF6A22474A0F900FB8234 /* SceneDelegate.swift */,
 				F43EF6A42474A0F900FB8234 /* ContentView.swift */,
@@ -105,6 +111,22 @@
 				F43EF6B92474A0FA00FB8234 /* Info.plist */,
 			);
 			path = "Arrivals BoardTests";
+			sourceTree = "<group>";
+		};
+		F43EF6C22474A10500FB8234 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F43EF6C62474A13F00FB8234 /* ArrivalsBoardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F43EF6C32474A11100FB8234 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				F43EF6C42474A13700FB8234 /* ArrivalsBoardViewModel.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +233,8 @@
 				F43EF6A12474A0F900FB8234 /* AppDelegate.swift in Sources */,
 				F43EF6A32474A0F900FB8234 /* SceneDelegate.swift in Sources */,
 				F43EF6A52474A0F900FB8234 /* ContentView.swift in Sources */,
+				F43EF6C72474A13F00FB8234 /* ArrivalsBoardView.swift in Sources */,
+				F43EF6C52474A13700FB8234 /* ArrivalsBoardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
