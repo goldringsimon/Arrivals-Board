@@ -16,6 +16,12 @@
 		F43EF6B82474A0FA00FB8234 /* Arrivals_BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43EF6B72474A0FA00FB8234 /* Arrivals_BoardTests.swift */; };
 		F43EF6C52474A13700FB8234 /* ArrivalsBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43EF6C42474A13700FB8234 /* ArrivalsBoardViewModel.swift */; };
 		F43EF6C72474A13F00FB8234 /* ArrivalsBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43EF6C62474A13F00FB8234 /* ArrivalsBoardView.swift */; };
+		F492F3BA247587DB00337EA1 /* testData940GZZLUASL.json in Resources */ = {isa = PBXBuildFile; fileRef = F492F3B9247587DB00337EA1 /* testData940GZZLUASL.json */; };
+		F492F3BC247587F800337EA1 /* testData940GZZLUKSX.json in Resources */ = {isa = PBXBuildFile; fileRef = F492F3BB247587F800337EA1 /* testData940GZZLUKSX.json */; };
+		F492F3BE2475897F00337EA1 /* testData490014277Q.json in Resources */ = {isa = PBXBuildFile; fileRef = F492F3BD2475897F00337EA1 /* testData490014277Q.json */; };
+		F492F3C1247589F000337EA1 /* TflPrediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F492F3C0247589F000337EA1 /* TflPrediction.swift */; };
+		F492F3C324758D0E00337EA1 /* TflPredictionFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F492F3C224758D0E00337EA1 /* TflPredictionFetcher.swift */; };
+		F492F3C524768FAD00337EA1 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F492F3C424768FAD00337EA1 /* ContentViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +48,12 @@
 		F43EF6B92474A0FA00FB8234 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F43EF6C42474A13700FB8234 /* ArrivalsBoardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrivalsBoardViewModel.swift; sourceTree = "<group>"; };
 		F43EF6C62474A13F00FB8234 /* ArrivalsBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrivalsBoardView.swift; sourceTree = "<group>"; };
+		F492F3B9247587DB00337EA1 /* testData940GZZLUASL.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testData940GZZLUASL.json; sourceTree = "<group>"; };
+		F492F3BB247587F800337EA1 /* testData940GZZLUKSX.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testData940GZZLUKSX.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
+		F492F3BD2475897F00337EA1 /* testData490014277Q.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testData490014277Q.json; sourceTree = "<group>"; };
+		F492F3C0247589F000337EA1 /* TflPrediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TflPrediction.swift; sourceTree = "<group>"; };
+		F492F3C224758D0E00337EA1 /* TflPredictionFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TflPredictionFetcher.swift; sourceTree = "<group>"; };
+		F492F3C424768FAD00337EA1 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,11 +95,12 @@
 		F43EF69F2474A0F900FB8234 /* Arrivals Board */ = {
 			isa = PBXGroup;
 			children = (
+				F492F3BF2475899100337EA1 /* Models */,
+				F492F3B8247587C100337EA1 /* Test Data */,
 				F43EF6C32474A11100FB8234 /* View Models */,
 				F43EF6C22474A10500FB8234 /* Views */,
 				F43EF6A02474A0F900FB8234 /* AppDelegate.swift */,
 				F43EF6A22474A0F900FB8234 /* SceneDelegate.swift */,
-				F43EF6A42474A0F900FB8234 /* ContentView.swift */,
 				F43EF6A62474A0FA00FB8234 /* Assets.xcassets */,
 				F43EF6AB2474A0FA00FB8234 /* LaunchScreen.storyboard */,
 				F43EF6AE2474A0FA00FB8234 /* Info.plist */,
@@ -117,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				F43EF6C62474A13F00FB8234 /* ArrivalsBoardView.swift */,
+				F43EF6A42474A0F900FB8234 /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -125,8 +139,28 @@
 			isa = PBXGroup;
 			children = (
 				F43EF6C42474A13700FB8234 /* ArrivalsBoardViewModel.swift */,
+				F492F3C424768FAD00337EA1 /* ContentViewModel.swift */,
 			);
 			path = "View Models";
+			sourceTree = "<group>";
+		};
+		F492F3B8247587C100337EA1 /* Test Data */ = {
+			isa = PBXGroup;
+			children = (
+				F492F3B9247587DB00337EA1 /* testData940GZZLUASL.json */,
+				F492F3BB247587F800337EA1 /* testData940GZZLUKSX.json */,
+				F492F3BD2475897F00337EA1 /* testData490014277Q.json */,
+			);
+			path = "Test Data";
+			sourceTree = "<group>";
+		};
+		F492F3BF2475899100337EA1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F492F3C0247589F000337EA1 /* TflPrediction.swift */,
+				F492F3C224758D0E00337EA1 /* TflPredictionFetcher.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,8 +244,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F492F3BA247587DB00337EA1 /* testData940GZZLUASL.json in Resources */,
 				F43EF6AD2474A0FA00FB8234 /* LaunchScreen.storyboard in Resources */,
+				F492F3BC247587F800337EA1 /* testData940GZZLUKSX.json in Resources */,
 				F43EF6AA2474A0FA00FB8234 /* Preview Assets.xcassets in Resources */,
+				F492F3BE2475897F00337EA1 /* testData490014277Q.json in Resources */,
 				F43EF6A72474A0FA00FB8234 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,9 +267,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F492F3C524768FAD00337EA1 /* ContentViewModel.swift in Sources */,
 				F43EF6A12474A0F900FB8234 /* AppDelegate.swift in Sources */,
+				F492F3C1247589F000337EA1 /* TflPrediction.swift in Sources */,
 				F43EF6A32474A0F900FB8234 /* SceneDelegate.swift in Sources */,
 				F43EF6A52474A0F900FB8234 /* ContentView.swift in Sources */,
+				F492F3C324758D0E00337EA1 /* TflPredictionFetcher.swift in Sources */,
 				F43EF6C72474A13F00FB8234 /* ArrivalsBoardView.swift in Sources */,
 				F43EF6C52474A13700FB8234 /* ArrivalsBoardViewModel.swift in Sources */,
 			);

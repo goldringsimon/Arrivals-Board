@@ -9,18 +9,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var model: ContentViewModel
+    
     var body: some View {
-        VStack {
-            ForEach(ArrivalsBoardViewModel.testData) { arrivalBoard in
+        ScrollView {
+            ForEach(model.arrivalsBoards) { arrivalBoard in
                 ArrivalsBoardView(model: arrivalBoard)
                 .padding()
             }
+            Button(action: {
+                self.model.fetchLineStatus(stopPointId: "")
+            }, label: {
+                Text("Add example stopPoint")
+            })
         }
     }
 }
-
+/*
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(arrivalsBoards: ArrivalsBoardViewModel.testData)
     }
 }
+*/

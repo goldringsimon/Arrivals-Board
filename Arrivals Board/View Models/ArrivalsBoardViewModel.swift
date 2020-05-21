@@ -8,19 +8,37 @@
 
 import Foundation
 
-struct ArrivalsBoardViewModel : Identifiable {
+struct ArrivalsBoardViewModel: Identifiable {
     let id = UUID()
     let stopName: String
     let arrivals: [ArrivalViewModel]
 }
 
-struct ArrivalViewModel : Identifiable {
+extension ArrivalsBoardViewModel {
+    init?(for predictions: [TflPrediction]) {
+        if let first = predictions.first {
+            self.stopName = first.stationName
+            self.arrivals = predictions.map({ ArrivalViewModel(for: $0) })
+        } else {
+            return nil
+        }
+    }
+}
+
+struct ArrivalViewModel: Identifiable {
     let id = UUID()
     let destination: String
     let timeRemaining: Int
     
     var timeRemainingText: String {
         return "\(Int(round(Double(timeRemaining) / 60.0))) mins"
+    }
+}
+
+extension ArrivalViewModel {
+    init(for prediction: TflPrediction) {
+        self.destination = prediction.destinationName
+        self.timeRemaining = prediction.timeToStation
     }
 }
 
