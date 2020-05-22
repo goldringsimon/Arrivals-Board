@@ -16,7 +16,7 @@ class ContentViewModel : ObservableObject {
     private var disposables = Set<AnyCancellable>()
     
     init() {
-        fetcher = TestPredictionFetcher()
+        fetcher = TflPredictionFetcher()
         arrivalsBoards = ArrivalsBoardViewModel.testData
     }
     
@@ -41,14 +41,9 @@ class ContentViewModel : ObservableObject {
                 },
                   receiveValue: { [weak self] response in
                     guard let self = self else { return }
-                    //self.dataSource = response
-                    //self.lineViewModels = response.map({ TflLineViewModel(for: $0) })
-                    //self.lineViewModels.sort()
-                    //self.lastReceived = Date()
                     if let newBoard = ArrivalsBoardViewModel(for: response) {
                         self.arrivalsBoards.append(newBoard)
                     }
-                    //self.arrivalsBoards.append(ArrivalsBoardViewModel(for: response))
             })
             .store(in: &disposables)
     }

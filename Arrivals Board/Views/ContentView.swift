@@ -18,7 +18,7 @@ struct ContentView: View {
                 .padding()
             }
             Button(action: {
-                self.model.fetchLineStatus(stopPointId: "")
+                self.model.fetchLineStatus(stopPointId: "940GZZLUASL")
             }, label: {
                 Text("Add example stopPoint")
             })

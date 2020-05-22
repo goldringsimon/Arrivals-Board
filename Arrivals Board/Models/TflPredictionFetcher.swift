@@ -19,15 +19,28 @@ protocol TflPredictionFetchable {
 }
 
 class TestPredictionFetcher: TflPredictionFetchable {
-    private let arsenalData: [TflPrediction]
+    //private let arsenalData: [TflPrediction]
     private let decoder: JSONDecoder
     
     func fetchArrivals(stopPointId: String) -> AnyPublisher<[TflPrediction], TflError> {
-        return Just(arsenalData)
+        guard let bundlePath = Bundle.main.path(forResource: "testData\(stopPointId)", ofType: "json") else {
+            fatalError("Couldn't open Arsenal test data")
+        }
+        
+        var jsonData : Data
+        do {
+            jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8)!
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+        //return jsonData.publisher
+        return Just(jsonData)
+            .decode(type: [TflPrediction].self, decoder: decoder)
             .mapError { error in
                 .parsing(description: error.localizedDescription)
         }
         .eraseToAnyPublisher()
+        
         /*guard let bundlePath = Bundle.main.path(forResource: "testDataArsenal", ofType: "json") else {
             fatalError("Couldn't open Arsenal test data")
         }
@@ -39,39 +52,40 @@ class TestPredictionFetcher: TflPredictionFetchable {
     }
     
     init () {
-        guard let bundlePath = Bundle.main.path(forResource: "testData940GZZLUASL", ofType: "json") else {
-            fatalError("Couldn't open Arsenal test data")
-        }
-        
-        var jsonData : Data
-        do {
-            jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8)!
-        } catch {
-            fatalError(error.localizedDescription)
-        }
-        
         decoder = JSONDecoder()
-        do {
-            try arsenalData = decoder.decode([TflPrediction].self, from: jsonData)
-        } catch {
-            fatalError(error.localizedDescription)
-        }
     }
 }
-/*
+
 class TflPredictionFetcher: TflPredictionFetchable {
-    func fetchLineStatus(stopPointId: String) -> AnyPublisher<[TflPrediction], TflError> {
-        guard let url = URL(string: "https://api.tfl.gov.uk/Stoppoint/arrivals/\(stopPointId)") else {
+    private let decoder = JSONDecoder()
+    private let session: URLSession = .shared
+    
+    func fetchArrivals(stopPointId: String) -> AnyPublisher<[TflPrediction], TflError> {
+        
+        guard let url = URL(string: "https://api.tfl.gov.uk/Stoppoint/\(stopPointId)/Arrivals") else {
           let error = TflError.network(description: "Couldn't create URL")
           return Fail(error: error).eraseToAnyPublisher()
         }
-        return URLSession.shared.dataTaskPublisher(for: URLRequest(url: url))
-          .mapError { error in
-            .network(description: error.localizedDescription)
-          }
-          .flatMap(maxPublishers: .max(1)) { pair in
-            decode(pair.data)
-          }
-          .eraseToAnyPublisher()
+        
+        /*.flatMap(maxPublishers: .max(1)) { pair in
+          decode(pair.data)
+        }*/
+        
+        sleep(5)
+        
+        return session.dataTaskPublisher(for: URLRequest(url: url))
+            //.subscribe(on: DispatchQueue.global()) // Not sure if this line is doing the right thing / anything so far.
+            // Maybe thread switching should not be done by fetcher but by the caller? (currently in view model)
+            .mapError { error in
+                TflError.network(description: error.localizedDescription)
+        }
+        .map {
+            $0.data
+        }
+        .decode(type: [TflPrediction].self, decoder: decoder)
+        .mapError { error in
+            .parsing(description: error.localizedDescription)
+        }
+        .eraseToAnyPublisher()
     }
-}*/
+}
