@@ -12,23 +12,33 @@ struct ContentView: View {
     @ObservedObject var model: ContentViewModel
     
     var body: some View {
-        ScrollView {
-            ForEach(model.arrivalsBoards) { arrivalBoard in
-                ArrivalsBoardView(model: arrivalBoard)
-                .padding()
+        NavigationView {
+            ScrollView {
+                ForEach(model.arrivalsBoards) { arrivalBoard in
+                    ArrivalsBoardView(model: arrivalBoard)
+                    .padding()
+                }
+                Button(action: {
+                    self.model.addBoard(stopPointId: "940GZZLUASL")
+                }, label: {
+                    Text("Add example stopPoint")
+                })
             }
-            Button(action: {
-                self.model.fetchLineStatus(stopPointId: "940GZZLUASL")
-            }, label: {
-                Text("Add example stopPoint")
-            })
+        .navigationBarTitle("Arrivals")
+        .navigationBarItems(trailing: addStopPointButton)
+        }
+    }
+    
+    private var addStopPointButton: some View {
+        NavigationLink(destination: AddStopPointView(contentViewModel: model)) {
+            Text("Add")
         }
     }
 }
-/*
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(arrivalsBoards: ArrivalsBoardViewModel.testData)
+        ContentView(model: ContentViewModel())
     }
 }
-*/
+
