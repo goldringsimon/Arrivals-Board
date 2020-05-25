@@ -19,3 +19,10 @@ extension MatchedStopViewModel {
         self.name = matchedStop.name
     }
 }
+
+extension MatchedStopViewModel {
+    private static let testData1 = MatchedStopViewModel(id: "0", name: "Penn Station")
+    private static let testData2 = MatchedStopViewModel(id: "1", name: "Union Station")
+    
+    static let testData = [testData1, testData2]
+}

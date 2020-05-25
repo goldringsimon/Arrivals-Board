@@ -9,20 +9,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var model: ContentViewModel
+    @ObservedObject var arrivalsManager: ArrivalsManager
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                ForEach(model.arrivalsBoards) { arrivalBoard in
-                    ArrivalsBoardView(model: arrivalBoard)
-                    .padding()
+            VStack {
+                NavigationLink(destination: AddStopPointView(arrivalsManager: arrivalsManager), isActive: $arrivalsManager.isShowingAddStopPointView, label: { EmptyView() })
+                ScrollView {
+                    ForEach(arrivalsManager.arrivalsBoards) { arrivalBoard in
+                        ArrivalsBoardView(model: arrivalBoard)
+//                            .onLongPressGesture {
+//                                self.arrivalsManager.removeBoard(stopPointId: arrivalBoard.id)
+//                        }
+                        .padding()
+                    }
                 }
-                Button(action: {
-                    self.model.addBoard(stopPointId: "940GZZLUASL")
-                }, label: {
-                    Text("Add example stopPoint")
-                })
             }
         .navigationBarTitle("Arrivals")
         .navigationBarItems(trailing: addStopPointButton)
@@ -30,15 +31,18 @@ struct ContentView: View {
     }
     
     private var addStopPointButton: some View {
-        NavigationLink(destination: AddStopPointView(contentViewModel: model)) {
-            Text("Add")
-        }
+        Button(action: {
+            self.arrivalsManager.isShowingAddStopPointView = true
+        }, label: {
+            Image(systemName: "plus.circle")
+                .renderingMode(.original)
+        })
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(model: ContentViewModel())
+        ContentView(arrivalsManager: ArrivalsManager())
     }
 }
 

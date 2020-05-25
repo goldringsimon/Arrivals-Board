@@ -9,7 +9,7 @@
 import Foundation
 
 struct ArrivalsBoardViewModel: Identifiable {
-    let id = UUID()
+    let id: String
     let stopName: String
     let arrivals: [ArrivalViewModel]
 }
@@ -17,6 +17,7 @@ struct ArrivalsBoardViewModel: Identifiable {
 extension ArrivalsBoardViewModel {
     init?(for predictions: [TflPrediction]) {
         if let first = predictions.first {
+            self.id = first.naptanId
             self.stopName = first.stationName
             self.arrivals = predictions.map({ ArrivalViewModel(for: $0) })
         } else {
@@ -47,7 +48,7 @@ extension ArrivalsBoardViewModel {
     static let testArrival2 = ArrivalViewModel(destination: "Battersea Station", timeRemaining: 234)
     static let testArrival3 = ArrivalViewModel(destination: "New Cross Gate", timeRemaining: 472)
     static let testArrivals1 = [testArrival1, testArrival2, testArrival3]
-    static let testArrivalBoard1 : ArrivalsBoardViewModel = ArrivalsBoardViewModel(stopName: "Archway Station", arrivals: testArrivals1)
-    static let testArrivalBoard2 : ArrivalsBoardViewModel = ArrivalsBoardViewModel(stopName: "King's Cross St Pancras", arrivals: testArrivals1)
+    static let testArrivalBoard1 : ArrivalsBoardViewModel = ArrivalsBoardViewModel(id: "0", stopName: "Archway Station", arrivals: testArrivals1)
+    static let testArrivalBoard2 : ArrivalsBoardViewModel = ArrivalsBoardViewModel(id: "1", stopName: "King's Cross St Pancras", arrivals: testArrivals1)
     static let testData = [testArrivalBoard1, testArrivalBoard2]
 }

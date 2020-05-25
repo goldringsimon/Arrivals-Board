@@ -9,16 +9,21 @@
 import SwiftUI
 
 struct AddStopPointView: View {
-    @ObservedObject var contentViewModel: ContentViewModel
+    @ObservedObject var arrivalsManager: ArrivalsManager
     
     var body: some View {
         List {
             Section() {
-                TextField("Station", text: $contentViewModel.addStopPointTextField)
+                TextField("Station", text: $arrivalsManager.addStopPointTextField)
             }
             Section {
-                ForEach(contentViewModel.addStopPointStationList) { item in
-                    Text(item.name)
+                ForEach(arrivalsManager.addStopPointStationList) { model in
+                    Button(action: {
+                        self.arrivalsManager.isShowingAddStopPointView = false
+                        self.arrivalsManager.addBoard(stopPointId: model.id)
+                    }, label: {
+                        MatchedStopRowView(model: model, isAlreadySelected: self.arrivalsManager.isAlreadyDisplayed(stopPointId: model.id))
+                    })
                 }
             }
         }
@@ -29,6 +34,6 @@ struct AddStopPointView: View {
 
 struct AddStopPointView_Previews: PreviewProvider {
     static var previews: some View {
-        AddStopPointView(contentViewModel: ContentViewModel())
+        AddStopPointView(arrivalsManager: ArrivalsManager())
     }
 }
